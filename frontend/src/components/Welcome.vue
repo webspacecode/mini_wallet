@@ -1,5 +1,10 @@
 <template>
-   <div class="flex items-center justify-center">
+<div class="flex items-center justify-center">
+  <div v-show="isPopup" class="fixed inset-0 flex items-center justify-center">
+    <div class="p-2 bg-green-100 w-52 text-center rounded shadow">
+      {{msg}}
+    </div>
+  </div>
   <div class="w-full max-w-sm">
 
    <nav class="fixed top-0 left-0 right-0 bg-white z-50">
@@ -100,6 +105,8 @@ import { useRouter } from 'vue-router'
 import axios from "axios"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
+import { emitter } from '../event-bus'
+
 
 const router = useRouter()
 
@@ -108,6 +115,8 @@ const balance = ref('$ 0.00')
 const transactionsData = ref({}); 
 const errors = ref({})
 const currentPage = ref('1')
+const msg = ref('')
+const isPopup = ref(false)
 
 const user = JSON.parse(localStorage.getItem("user"))
 name.value = user.name
@@ -132,9 +141,12 @@ async function fetchTransactions() {
         const response = await axios.get("/api/transactions", {
             headers: { Authorization: `Bearer ${token}` }
         });
-        transactionsData.value = response.data;
-        currentPage.value = response.data.transaction_history.current_page;
+        transactionsData.value = response.data
+        currentPage.value = response.data.transaction_history.current_page
 
+        localStorage.setItem("user", JSON.stringify(response.data.user))
+        user.value = response.data.user
+        balance.value = "$ " + response.data.user_balance
         console.log(response.data, "GET TRANSACION")
         
     } catch (error) {
@@ -150,19 +162,30 @@ async function fetchTransactions() {
         }
     }
 } 
+
+function showPopup(text) {
+  msg.value = text
+  isPopup.value = true
+  console.log("HEREEE", msg.value, isPopup.value)
+  setTimeout(function() {
+    isPopup.value = false
+  },5000)
+}
 onMounted(() => {
-  window.Echo.private(`user.${user.id}`)
-  .listen('.money.transferred', (e) => {
-      if (user.id === e.transaction.sender_id) {
-        alert(`You sent ₹${e.transaction.amount}`);
-      } else {
-        alert(`You received ₹${e.transaction.amount}`);
-      }
+  // window.Echo.private(`user.${user.id}`)
+  // .listen('.money.transferred', (e) => {
+  //     let message = ''
+  //     if (user.id === e.transaction.sender_id) {
+  //       message = `You sent ₹${e.transaction.amount}`
+  //     } else {
+  //       message = `You received ₹${e.transaction.amount}`
+  //     }
 
-      // Optionally refresh transaction list
-      fetchTransactions();
-  });
-
+  //     // Optionally refresh transaction list
+  //     showPopup(message);
+  //     fetchTransactions();
+  // });
+  emitter.on('transaction-event', fetchTransactions)
   fetchTransactions()
 })
 </script>

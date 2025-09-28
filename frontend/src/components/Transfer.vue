@@ -57,9 +57,17 @@
 
     <!-- Cards -->
     <div class="mt-4">
-      <div @click="openModal(user)" v-for="user in filteredUsers" :key="user.id" class="border border-gray-300 p-4 mt-2 cursor-pointer rounded hover:bg-gray-100">
-        <h2>Name: {{user.name}}</h2>
-        <h2>Email: {{user.email}}</h2>
+      <div v-for="user in filteredUsers" :key="user.id" class="flex items-center justify-between border border-gray-300 p-4 mt-2 rounded hover:bg-gray-100">
+        <!-- User info (clickable) -->
+        <div @click="openModal(user)" class="flex flex-col cursor-pointer">
+          <h2 class="font-semibold">Name: {{user.name}}</h2>
+          <h2 class="text-gray-600 text-sm">Email: {{user.email}}</h2>
+        </div>
+
+        <!-- Pay button -->
+        <button @click.stop="openModal(user)" class="bg-purple-950 text-white px-4 py-2 rounded hover:bg-purple-800">
+          Pay
+        </button>
       </div>
     </div>
 
@@ -141,11 +149,17 @@ async function payAmount() {
         console.log(response.data, "TRANSACION")
         if (response.data.success) {
             router.push({ name: 'Welcome' })
+        } else {
+          errors.value = {'error': response.data.message}
         }
     } catch (error) {
         if (error.response) {
             console.error("Error response:", error.response.data)
-            errors.value = error.response.data
+            if (!error.response.data) {
+              errors.value = error.response.message
+            } else {
+              errors.value = error.response.data
+            }
         } else if (error.request) {
             console.error("No response received:", error.request)
             alert("No response from server. Please try again.")
