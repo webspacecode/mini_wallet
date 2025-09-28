@@ -61,4 +61,5 @@ Final Step
 After building the frontend, go back to the backend and run:
    php artisan serve
 
-Your Mini Wallet app should now be running locally.
+
+And visit http://127.0.0.1:8000
