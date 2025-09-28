@@ -34,7 +34,7 @@ Steps:
 
 6. Seed the database (if required):
    php artisan db:seed
-   Note - for sample user and password from seed (Username - user<Number>@example.com Password - password123)
+   Note - for sample user and password from seed (Username - user1@example.com Password - password123)
 
 7. Generate Laravel application key:
    php artisan key:generate
