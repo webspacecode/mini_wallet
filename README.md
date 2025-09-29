@@ -5,7 +5,7 @@
 #### * Note: Use PHP 8.x or above *
 
 ### **Steps:**:
-**Go to backend directory: cd backend **
+#### **Go to backend directory: cd backend **
 1.  Install dependencies: composer install
 
 2.  Rename the environment file: mv .env.example .env
@@ -41,7 +41,7 @@ DB_HOST=127.0.0.1
 Note: Use Node.js v20.19.5 and npm v10.8.2.
 
 ### **Steps:**:
-**Go to backend directory: cd frontend **
+#### **Go to frontend directory: cd frontend **
 
 1.  Install dependencies: 
         npm install
