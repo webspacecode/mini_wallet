@@ -5,14 +5,14 @@
 #### * Note: Use PHP 8.x or above *
 
 ### **Steps:**:
-
+**Go to backend directory: cd backend **
 1.  Install dependencies: composer install
 
 2.  Rename the environment file: mv .env.example .env
 
-3.  Add your database details in .env: 
-        - DB_CONNECTION=mysql
-        - DB_HOST=127.0.0.1 
+3.  Add your database details in .env:
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1 
         - DB_PORT=3306 
         - DB_DATABASE=your_database_name
         - DB_USERNAME=your_database_user 
@@ -41,6 +41,7 @@
 Note: Use Node.js v20.19.5 and npm v10.8.2.
 
 ### **Steps:**:
+**Go to backend directory: cd frontend **
 
 1.  Install dependencies: 
         npm install
