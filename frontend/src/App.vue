@@ -8,7 +8,6 @@ const isPopup = ref(false)
 function showPopup(text) {
   msg.value = text
   isPopup.value = true
-  console.log("HEREEE", msg.value, isPopup.value)
   setTimeout(function() {
     isPopup.value = false
   },5000)
@@ -26,9 +25,10 @@ onMounted(() => {
       } else {
         message = `You received ₹${e.transaction.amount}`
       }
-
-      // Optionally refresh transaction list
+      // Show status popup 
       showPopup(message);
+
+      // Emitt event to fetch new transaction
       emitter.emit('transaction-event', e.transaction)
     })
 })

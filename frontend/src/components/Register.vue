@@ -74,7 +74,6 @@ function register() {
             const response = await axios.post("/api/register", payload)
 
             const token = response.data.token 
-            console.log("Registration details: ", response.data)
             if (token) {
                 localStorage.setItem("auth_token", token)
 

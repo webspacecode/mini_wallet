@@ -7,9 +7,9 @@ import Welcome from '@/components/Welcome.vue'
 import Transfer from '@/components/Transfer.vue'
 
 
-// Fake auth check function (replace with real API/state check)
+// Check if user is authenticated
 function isAuthenticated() {
-  return !!localStorage.getItem('auth_token')  // or use Pinia/Vuex store
+  return !!localStorage.getItem('auth_token') 
 }
 
 const routes = [

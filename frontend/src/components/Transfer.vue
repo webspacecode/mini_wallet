@@ -26,6 +26,7 @@
         Balance {{balance}}
       </p>
     </div>
+    
     <!-- Search input -->
     <div class="mt-4">
       <input 
@@ -120,8 +121,6 @@ async function fetchUser() {
         });
 
         users.value = response.data.users.data;
-        console.log(response.data.users.data, "USERS")
-
     } catch (error) {
 
     }
@@ -146,7 +145,6 @@ async function payAmount() {
             headers: { Authorization: `Bearer ${token}` }
         });
 
-        console.log(response.data, "TRANSACION")
         if (response.data.success) {
             router.push({ name: 'Welcome' })
         } else {
@@ -154,7 +152,6 @@ async function payAmount() {
         }
     } catch (error) {
         if (error.response) {
-            console.error("Error response:", error.response.data)
             if (!error.response.data) {
               errors.value = error.response.message
             } else {

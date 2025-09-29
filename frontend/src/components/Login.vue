@@ -55,7 +55,7 @@ function login() {
             const response = await axios.post("/api/login", payload)
 
             const token = response.data.token 
-            console.log("Login details: ", response.data)
+
             if (token) {
                 localStorage.setItem("auth_token", token)
 

@@ -147,7 +147,6 @@ async function fetchTransactions() {
         localStorage.setItem("user", JSON.stringify(response.data.user))
         user.value = response.data.user
         balance.value = "$ " + response.data.user_balance
-        console.log(response.data, "GET TRANSACION")
         
     } catch (error) {
         if (error.response) {
@@ -163,29 +162,11 @@ async function fetchTransactions() {
     }
 } 
 
-function showPopup(text) {
-  msg.value = text
-  isPopup.value = true
-  console.log("HEREEE", msg.value, isPopup.value)
-  setTimeout(function() {
-    isPopup.value = false
-  },5000)
-}
 onMounted(() => {
-  // window.Echo.private(`user.${user.id}`)
-  // .listen('.money.transferred', (e) => {
-  //     let message = ''
-  //     if (user.id === e.transaction.sender_id) {
-  //       message = `You sent ₹${e.transaction.amount}`
-  //     } else {
-  //       message = `You received ₹${e.transaction.amount}`
-  //     }
-
-  //     // Optionally refresh transaction list
-  //     showPopup(message);
-  //     fetchTransactions();
-  // });
+  // Listen for echo event
   emitter.on('transaction-event', fetchTransactions)
+
+  // Fetch transactions on mounted
   fetchTransactions()
 })
 </script>

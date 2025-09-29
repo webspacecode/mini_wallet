@@ -11,7 +11,8 @@ axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || '/api'
 window.Pusher = Pusher;
 
 const token = localStorage.getItem('auth_token');
-console.log("ENVS", import.meta.env.VITE_PUSHER_APP_KEY, import.meta.env.VITE_PUSHER_APP_CLUSTER, token)
+
+// Listen for broadcasting only if user login 
 if (token) {
     window.Echo = new Echo({
         broadcaster: "pusher",
