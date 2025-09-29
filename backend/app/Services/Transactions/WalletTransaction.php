@@ -141,11 +141,6 @@ class WalletTransaction implements TransactionStrategy
         ], 500);
     }
 
-    public function status(Request $request): array
-    {
-
-    }
-
     public function getTransactions(Request $request): JsonResponse
     {
         $user = $request->user();

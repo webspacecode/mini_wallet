@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        // 1. Seed Users
         $users = [];
         for ($i = 1; $i <= 10; $i++) {
             $users[] = [
@@ -45,7 +44,7 @@ class DatabaseSeeder extends Seeder
             } while ($receiver_id === $sender_id);
 
             $amount = rand(100, 1000);
-            $commission = round($amount * 0.02, 2); // 2% commission fee
+            $commission = round($amount * 0.02, 2);
 
             $transactions[] = [
                 'sender_id' => $sender_id,
@@ -57,10 +56,8 @@ class DatabaseSeeder extends Seeder
             ];
         }
 
-        // Insert transactions into DB
         DB::table('transactions')->insert($transactions);
 
-        // 3. Optional: Seed Personal Access Tokens (for API testing)
         $tokens = [];
         foreach ($users as $index => $user) {
             $tokens[] = [
@@ -77,14 +74,12 @@ class DatabaseSeeder extends Seeder
         }
         DB::table('personal_access_tokens')->insert($tokens);
 
-        // 4. Optional: Seed Password Resets
         DB::table('password_resets')->insert([
             'email' => 'user1@example.com',
             'token' => Str::random(64),
             'created_at' => now(),
         ]);
 
-        // 5. Optional: Seed Failed Jobs
         DB::table('failed_jobs')->insert([
             'uuid' => Str::uuid(),
             'connection' => 'database',

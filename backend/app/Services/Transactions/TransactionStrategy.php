@@ -15,6 +15,4 @@ interface TransactionStrategy
 
     public function capture(Request $request): JsonResponse;
 
-    public function status(Request $request): array;
-
 }
