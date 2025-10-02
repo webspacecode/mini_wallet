@@ -1,62 +1,62 @@
-# ** Mini Wallet Application ** 
+# Mini Wallet Application
 
 ## Backend Setup
 
-#### * Note: Use PHP 8.x or above *
+### _Note: Use PHP 8.x or above_
 
-### **Steps:**:
-#### **Go to backend directory: cd backend **
+### Steps:
+#### Go to backend directory: cd backend 
 1.  Install dependencies: composer install
 
 2.  Rename the environment file: mv .env.example .env
 
 3.  Add your database details in .env:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1 
-        - DB_PORT=3306 
-        - DB_DATABASE=your_database_name
-        - DB_USERNAME=your_database_user 
-        - DB_PASSWORD=your_database_password
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1 
+- DB_PORT=3306 
+- DB_DATABASE=your_database_name
+- DB_USERNAME=your_database_user 
+- DB_PASSWORD=your_database_password
 
 4.  Configure Pusher in .env: 
-        - PUSHER_APP_ID=2056028
-        - PUSHER_APP_KEY=f1523796bce885f72ea3
-        - PUSHER_APP_SECRET=868c6a07e3bb57c9c07a 
-        - PUSHER_HOST= 
-        - PUSHER_PORT=443
-        - PUSHER_SCHEME=https 
-        - PUSHER_APP_CLUSTER=ap2
+- PUSHER_APP_ID=2056028
+- PUSHER_APP_KEY=f1523796bce885f72ea3
+- PUSHER_APP_SECRET=868c6a07e3bb57c9c07a 
+- PUSHER_HOST= 
+- PUSHER_PORT=443
+- PUSHER_SCHEME=https 
+- PUSHER_APP_CLUSTER=ap2
 
 5.  Run migrations: php artisan migrate
 
 6.  Seed the database (if required): 
-        - php artisan db:seed 
-        #### *Note - for sample user and password from seed (Username - user1@example.com Password - password123)*
+- php artisan db:seed 
+#### _Note - for sample user and password from seed (Username - user1@example.com Password - password123)_
 
 7.  Generate Laravel application key: 
-        php artisan key:generate
+- php artisan key:generate
 
 ## Frontend Setup
 
-Note: Use Node.js v20.19.5 and npm v10.8.2.
+### _Note: Use Node.js v20.19.5 and npm v10.8.2._
 
-### **Steps:**:
-#### **Go to frontend directory: cd frontend **
+### Steps:
+#### Go to frontend directory: cd frontend
 
 1.  Install dependencies: 
-        npm install
+- npm install
 
 2.  Add environment variables in frontend/.env:
-        VITE_API_BASE_URL=http://127.0.0.1:8000
-        VITE_PUSHER_APP_KEY=f1523796bce885f72ea3 
-        VITE_PUSHER_APP_CLUSTER=ap2
+- VITE_API_BASE_URL=http://127.0.0.1:8000
+- VITE_PUSHER_APP_KEY=f1523796bce885f72ea3 
+- VITE_PUSHER_APP_CLUSTER=ap2
 
 3.  Build the frontend: 
-        npm run build
+- npm run build
 
-### **Final Step:**
+### Final Step:
 
 After building the frontend, go back to the backend and run: 
-    php artisan serve
+- php artisan serve
 
 And visit http://127.0.0.1:8000
